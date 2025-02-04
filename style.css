@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #010101; /* Dark Background */
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    position: relative; /* For background layer positioning */
+    cursor: none; /* Hide the default cursor */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* So we can properly position the background */
+    z-index: 2; /* Text container should be on top of other layers */
+}
+
+.title {
+    font-size: 7em;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    text-shadow: 0 0 0.2em #00eaff, 0 0 0.5em #00eaff;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.author {
+    font-size: 1.5em;
+    font-weight: 200;
+    color: #aaa;
+    letter-spacing: 0.08em;
+    animation: fadeIn 2.5s ease-in-out;
+}
+
+
+body::before,
+body::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+body::before{
+    background: radial-gradient(circle, rgba(0, 234, 255, 0.2) 10%, transparent 40%);
+    animation: backgroundEffect 20s linear infinite;
+}
+body::after {
+    background: url('glow_blur.png') no-repeat center/120% ;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.cursor {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #00eaff;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 3;
+    transition: transform 0.2s ease;
+    transform: translate(-50%, -50%);
+}
+.cursor.hovered{
+    width: 45px;
+    height: 45px;
+    transition: transform 0.1s ease;
+}
+
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes backgroundEffect {
+    0% { background-position: 0 0; }
+    100% { background-position: 200px 200px; }
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('BebasNeue-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
